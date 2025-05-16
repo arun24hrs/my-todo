@@ -18,10 +18,10 @@
 
 .btn {
   padding: 4px 16px;
-  margin-left: 10px;
+  /* margin-left: 10px; */
 }
 
-.inputt{
+.inputt, .dateInput{
   padding: 4px;
 }
 
@@ -31,4 +31,10 @@
 
 .inputWrapper{
   margin-top: 16px;
+  gap: 10px;
+}
+
+.logoutBtn{
+  padding: 2px 10px;
+  
 }
