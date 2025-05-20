@@ -1,36 +1,54 @@
 import React from 'react'
-import TodoList from './todoList';
+import axios from "axios"
+import { toast } from 'react-toastify';
+import TodoItem from './todoItem';
 
 const Input = () => {
 
-  const [task, setTask] = React.useState();
-  const [newDueDate, setNewDueDate] = React.useState("");
-  const [allTask, setAllTask] = React.useState([]);
+  const [task, setTask] = React.useState({});
+
 
   const handleInput = (e) => {
-    
-    setTask(e.target.value);
+    console.log(e.target.value)
+    setTask({...task,taskName: e.target.value});
   }
 
   const handleDate = (e)=> {
-    console.log(e.target.value);
-    setNewDueDate(e.target.value);
+    setTask({...task, dueDate: e.target.value})
   }
 
   const handleAddTask = () => {
-    if(task == "" || task == undefined || newDueDate == ""){
-      alert('Please fill all details.');
+    if(task.taskName == "" || task.taskName == undefined || task.dueDate == ""){
+      const notify = () => toast.warn("Please fill all the detials");
+      notify();
     }
     const newTask = {
-      id: Date.now(),
-      task: task,
-      dueDate: newDueDate,
-      isPrior: false
+      taskName: task.taskName,
+      dueDate: task.dueDate,
+      isPrior: false,
+      isComplete: false,
+      isPending: false
     }
-    setAllTask([...allTask, newTask]);
-  }
+    console.log(task, "task")
+  
+    addTask(newTask);
 
-  console.log(allTask)
+  }
+let token = localStorage.getItem("token");
+console.log(token)
+  const addTask = async(task) => {
+     try {
+       let response = await axios.post(`http://localhost:8080/tasks/add`, task, {headers: {
+        "Authorization": token
+       }});
+      //  response = await response.json();
+       console.log(response);
+       
+     } catch (error) {
+      console.log(error)
+     }
+    }
+
   return (
     <>
     
@@ -43,7 +61,7 @@ const Input = () => {
         <button onClick={handleAddTask} className='bg-[#fce180] px-4 border border-amber-400 rounded-md btn hover:bg-[#baa559] hover:text-white transform duration-500'>Add Task</button>
     </div>
     <div>
-      <TodoList data={task}/>
+      {/* <TodoItem data={task}/> */}
     </div>
     </>
   )
