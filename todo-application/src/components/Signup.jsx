@@ -30,7 +30,6 @@ const Signup = () => {
       }
     } else {
       if (user.email == "") {
-        // alert("Fill complete form!")
         setEmailError(true);
       }
       if (user.password == "") {
@@ -94,7 +93,7 @@ const Signup = () => {
             name="password"
             value={user.password}
             onChange={(e) => handleChange(e)}
-            className="border {border-gray-300} rounded-sm w-sm inputt"
+            className="border border-gray-300 rounded-sm w-sm inputt"
           />
           {isPasswordError ? (
             <span className="text-red-600 text-xs">

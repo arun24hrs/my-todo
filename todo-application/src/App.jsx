@@ -1,20 +1,20 @@
 import './App.css'
 import React from 'react'
 import { BrowserRouter, Routes, Route } from "react-router-dom"
-import Header from './components/Header'
 import Home from './components/Home'
-import TodoList from './components/TodoList'
 import PrivateRoute from './components/PrivateRoute'
+import TodoList from './components/todoList'
+
 
 function App() {
-  const [loggedInUser, setLoggedInUser] = React.useState("");
+
+  // const isUser = localStorage.getItem("token");
 
   return (
 
       <>
-      <Header user={loggedInUser?.email} />
       <Routes>
-        <Route path='/' element={<Home setUserFn={setLoggedInUser} />} />
+        <Route path='/' element={<Home />} />
         <Route path='/todolist' element={
           <PrivateRoute>
             <TodoList />

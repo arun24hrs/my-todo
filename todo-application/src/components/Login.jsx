@@ -3,7 +3,7 @@ import TodoList from "./todoList";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 
-const Login = ({ setUserFn }) => {
+const Login = () => {
   const [user, setUser] = React.useState({ email: "", password: "" });
   const [loading, setLoading] = React.useState(false)
   const notify = () => toast.warn("Please login to your account!");
@@ -18,6 +18,7 @@ const Login = ({ setUserFn }) => {
 
   const handleLogin = async () => {
       setLoading(true);
+
     try {
       let response = await fetch("https://todo-backend-1-a11u.onrender.com/users/login", {
         method: "post",
@@ -29,9 +30,10 @@ const Login = ({ setUserFn }) => {
       response = await response.json();
       console.log(response);
       if (response.token) {
-        localStorage.setItem("token",response.token.split(" ")[1])
-        navigate("/todolist", { state: { user } });
-        setUserFn(user);
+        localStorage.setItem("token",response.token);
+        localStorage.setItem("username",user.email);
+        navigate("/todolist");
+        console.log("logged in");
         
       } else {
         notify();
@@ -58,7 +60,7 @@ const Login = ({ setUserFn }) => {
         />
 
         <input
-          type="text"
+          type="password"
           placeholder="Enter Your Password"
           name="password"
           onChange={(e) => handleChange(e)}
@@ -67,7 +69,6 @@ const Login = ({ setUserFn }) => {
 
         {loading ? <button
           className="bg-gray-500 px-4 border border-amber-400 rounded-md btn hover:bg-[#baa559] hover:text-white transform duration-500 mt-2 text-white"
-          onClick={handleLogin}
         >
           Getting things ready...
         </button> : <button
