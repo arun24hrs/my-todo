@@ -44,7 +44,7 @@ const Input = () => {
     try {
       setLoading(true);
       let response = await axios.post(
-        `http://localhost:8080/tasks/add`, task,
+        `https://todo-backend-2-2yjh.onrender.com/tasks/add`, task,
         {
           
           headers: {

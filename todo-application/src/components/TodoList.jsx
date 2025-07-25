@@ -13,7 +13,7 @@ const TodoList = () => {
 
   const fetchAllTasks = async () => {
     try {
-      const response = await fetch(`http://localhost:8080/tasks/all`, {
+      const response = await fetch(`https://todo-backend-2-2yjh.onrender.com/tasks/all`, {
         method: "GET",
         headers: {
           Authorization: token,

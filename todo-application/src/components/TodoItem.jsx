@@ -23,7 +23,7 @@ const TodoItem = ({ data }) => {
     handleAddTask();
     try {
       console.log(task, "updated data")
-      let response = await fetch(`http://localhost:8080/tasks/edit/${data._id}`,{
+      let response = await fetch(`https://todo-backend-2-2yjh.onrender.com/tasks/edit/${data._id}`,{
         method: "PATCH",
         body: JSON.stringify(task),
         headers: {
@@ -54,7 +54,7 @@ const TodoItem = ({ data }) => {
 
   const handleComplete = async () => {
     try {
-      const response = await fetch(`http://localhost:8080/tasks/edit/${data._id}`, {
+      const response = await fetch(`https://todo-backend-2-2yjh.onrender.com/tasks/edit/${data._id}`, {
         method: "PATCH",
         headers: {
           Authorization: token,
@@ -72,7 +72,7 @@ const TodoItem = ({ data }) => {
 
   const handlePending = async () => {
     try {
-      const response = await fetch(`http://localhost:8080/tasks/edit/${data._id}`, {
+      const response = await fetch(`https://todo-backend-2-2yjh.onrender.com/tasks/edit/${data._id}`, {
         method: "PATCH",
         headers: {
           Authorization: token,
@@ -90,7 +90,7 @@ const TodoItem = ({ data }) => {
 
   const handleDelete = async () => {
     try {
-      const response = await fetch(`http://localhost:8080/tasks/delete/${data._id}`, {
+      const response = await fetch(`https://todo-backend-2-2yjh.onrender.com/tasks/delete/${data._id}`, {
         method: "DELETE",
         headers: {
           Authorization: token,
