@@ -1,5 +1,5 @@
 import React from "react";
-import TodoList from "./todoList";
+import TodoList from "./TodosList";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 
