@@ -64,7 +64,7 @@ const TodoItem = ({ data }) => {
       });
       const resData = await response.json();
       console.log("Completed:", resData);
-      onUpdate?.(); // Optional: Refresh list
+      // onUpdate?.(); // Optional: Refresh list
     } catch (error) {
       console.log("Error completing task:", error);
     }
@@ -82,7 +82,7 @@ const TodoItem = ({ data }) => {
       });
       const resData = await response.json();
       console.log("Marked Pending:", resData);
-      onUpdate?.();
+      // onUpdate?.();
     } catch (error) {
       console.log("Error marking pending:", error);
     }
@@ -98,7 +98,7 @@ const TodoItem = ({ data }) => {
       });
       const resData = await response.json();
       console.log("Deleted:", resData);
-      onUpdate?.();
+      // onUpdate?.();
     } catch (error) {
       console.log("Error deleting task:", error);
     }

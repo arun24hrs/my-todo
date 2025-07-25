@@ -4,9 +4,9 @@ const TaskModel = require("../Model/tasksModel.js");
 const taskRouter = Router();
 
 taskRouter.post("/add", async (req, res) => {
-  const { userID, taskName, dueDate, isPrior } = req.body;
+  const { userID, taskName, dueDate, isPrior, isComplete, isPending } = req.body;
   try {
-    const newTask = await TaskModel({ userID, taskName, dueDate, isPrior });
+    const newTask = await TaskModel({ userID, taskName, dueDate, isPrior, isComplete, isPending });
     await newTask.save();
     res.status(200).send({msg: "Task added successfully."})
   } catch (error) {
@@ -15,7 +15,8 @@ taskRouter.post("/add", async (req, res) => {
   }
 });
 
-taskRouter.patch("/edit/task/:id", async(req,res)=>{
+taskRouter.patch("/edit/:id", async(req,res)=>{
+  console.log(req.params, "param")
   const {id} = req.params;
   const taskToEdit = await TaskModel.findOne({id: req.body.taskID});
     try {
@@ -40,6 +41,7 @@ taskRouter.delete("/delete/task/:id", async(req, res)=>{
 
 taskRouter.get("/all", async (req, res) => {
   const { userID, userEmail } = req.body;
+  console.log(req.body, "body")
   const allTasks = await TaskModel.find({ userID });
   if(allTasks.length){
     const relvantTasks = allTasks.filter((el)=> el.userID == userID);
