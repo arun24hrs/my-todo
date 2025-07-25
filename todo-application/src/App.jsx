@@ -17,7 +17,7 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route path='/todolist' element={
           <PrivateRoute>
-            <TodoList />
+            <TodoList/>
           </PrivateRoute>
         } />
       </Routes>

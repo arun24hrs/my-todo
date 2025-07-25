@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Input from "./Input";
 import { Table } from "antd";
 import Header from "./Header";
-import TodoItem from "./todoItem";
+import TodoItem from "./TodoItem";
 
 const TodoList = () => {
   const [allTask, setAllTask] = useState([]);
